@@ -1,22 +1,22 @@
-name: My Awesome Application
-on: push
-jobs:
-  unit-testing:
-    name: Unit Testing
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4.2.2
+# name: My Awesome Application
+# on: push
+# jobs:
+#   unit-testing:
+#     name: Unit Testing
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout
+#         uses: actions/checkout@v4.2.2
 
-      - name: Install Node JS
-        uses: actions/setup-node@v3
-        with:
-          node-version: 20
+#       - name: Install Node JS
+#         uses: actions/setup-node@v3
+#         with:
+#           node-version: 20
 
-      - name: Install Dependencies
-        run: npm install
+#       - name: Install Dependencies
+#         run: npm install
 
-      - name: Run unit tests
-        run: npm test
+#       - name: Run unit tests
+#         run: npm test
 
 
