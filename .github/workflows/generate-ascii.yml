@@ -14,7 +14,9 @@ jobs:
       run: ls -ltra
 
     - name: Executing Shell Script
-      run: ./ascii-scripts.sh
+      run: |
+        chmod +x
+        ./ascii-scripts.sh
 
     # - name: Run cowsay
     #   run: cowsay -f dragon "Run for cover, I am a Dragon" >> dragon.txt
