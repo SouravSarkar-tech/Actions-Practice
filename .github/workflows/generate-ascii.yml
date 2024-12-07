@@ -1,26 +1,23 @@
 name: First Workflow
-on: push
+
+on: [push]
 
 jobs:
-    ascii_job:  
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout Repo
-              uses: actions/checkout@v4
+  build:
+    runs-on: ubuntu-latest
 
-            - name: Install Cowsay Program
-              run: sudo apt-get install cowsay -y
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
 
-            - name: Generate ASCII Artwork
-              run: cowsay -f dragon "Run for cover, I am a Dragon" >> dragon.txt
-                   
-            - name: Test File exists
-              run: grep i "dragon" dragon.txt
+    - name: Set up cowsay
+      run: sudo apt-get install -y cowsay
 
-            - name: Read File
-              run: cat dragon.txt
+    - name: Run cowsay
+      run: cowsay -f dragon "Run for cover, I am a Dragon" >> dragon.txt
 
-            - name: List Repo files
-              run: ls -ltra
+    - name: Verify dragon.txt
+      run: cat dragon.txt
 
-            
+    - name: Run grep
+      run: grep -i "dragon" dragon.txt
