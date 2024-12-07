@@ -1,0 +1,46 @@
+name: Multi Job Workflow
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    # - name: Checkout repository
+    #   uses: actions/checkout@v4
+
+    - name: Execute Cowsay CMD
+      run: sudo apt-get install cowsay -y
+
+    - name: Run cowsay
+      run: cowsay -f dragon "Run for cover, I am a Dragon" >> dragon.txt
+
+    - name: Sleep for 30 Seconds
+      run: sleep 30
+  
+
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: Sleep for 10 Seconds
+      run: sleep 10
+
+    - name: Text file Exists
+      run: grep -i "dragon" dragon.txt
+
+
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: Repo File
+      run: cat dragon.txt
+
+    - name: Deploy
+      run: echo Deploying..... ... ..
+
+
