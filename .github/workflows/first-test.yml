@@ -1,28 +1,28 @@
-name: First Workflow
-on: [push,fork]
+# name: First Workflow
+# on: [push,fork]
 
-jobs:
-    first_job:  
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout Repo
-              uses: actions/checkout@v4
+# jobs:
+#     first_job:  
+#         runs-on: ubuntu-latest
+#         steps:
+#             - name: Checkout Repo
+#               uses: actions/checkout@v4
 
-            - name: Welcome message
-              run: |
-                echo "First Github Actions Job"
-                ls -ltra
-                cat README.md
+#             - name: Welcome message
+#               run: |
+#                 echo "First Github Actions Job"
+#                 ls -ltra
+#                 cat README.md
 
-            - name: Set Up Cowsay
-              run: sudo apt-get install -y cowsay
+#             # - name: Set Up Cowsay
+#             #   run: sudo apt-get install -y cowsay
 
-            - name: Generate ASCII Artwork
-              run: cowsay -f dragon "Run for cover, I am a Dragon" >> dragon.txt
+#             - name: Generate ASCII Artwork
+#               run: cowsay -f dragon "Run for cover, I am a Dragon" >> dragon.txt
                    
 
-            # - name: List files
-            #   run: ls
+#             # - name: List files
+#             #   run: ls
 
-            # - name: Read File
-            #   run: cat README.md
+#             # - name: Read File
+#             #   run: cat README.md
