@@ -4,9 +4,9 @@ on:
     # schedule:
     #     - cron: "*/59 * * * *"
     push: 
-        branches:
-            - main
-            - "!feature/*"
+        # branches:
+        #     - main
+        #     - "!feature/*"
         # branch-ignore:
         #     - feature/**
         #     - test/**
