@@ -35,14 +35,14 @@ jobs:
         steps:
         - name: Print Workflow Inputs
           run: |
-            echo: "Run Tests: ${{ inputs.run-tests }}"
-            echo: "Test Type: ${{ inputs.test-type }}"
-            echo: "enviroment: ${{ inputs.enviroment }}"
-            echo: "Build Number: ${{ inputs.build-number }}"
-            echo: "Message: ${{ inputs.message }}"
+            echo "Run Tests: ${{ inputs.run-tests }}"
+            echo "Test Type: ${{ inputs.test-type }}"
+            echo "enviroment: ${{ inputs.enviroment }}"
+            echo "Build Number: ${{ inputs.build-number }}"
+            echo "Message: ${{ inputs.message }}"
 
-        - name: Run Tets (if selected)
-          if: ${{ inputs.run-tests == 'true'}}
+        - name: Run Tests (if selected)
+          if: ${{ inputs.run-tests == true}}
           run: echo "Testing......"
 
         # - name: Deploy to ${{ inputs.enviroment }}
