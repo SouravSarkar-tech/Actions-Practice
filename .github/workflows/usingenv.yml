@@ -1,0 +1,19 @@
+name: Using Env
+on:
+    push:
+        branches: 
+            - main
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+        - run: echo Build is Running!
+    
+    publish:
+        runs-on: ubuntu-latest
+        needs: build
+        environment: production
+        steps:
+        - run: echo Publish is running!
+            
