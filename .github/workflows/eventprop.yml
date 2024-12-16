@@ -1,0 +1,23 @@
+name: Event Properties
+on:
+    pull_request: 
+        types: 
+            - opened
+        paths:
+            - '.github/workflows/**'
+            - '.github/CODEOWNERS'
+            - 'package*.json'
+        
+jobs:
+    triage:
+        if: >-
+            github.event.pull_request.user.login != 'october' &&
+            github.event.pull_request.user.login != 'dependabot[bot]'
+        runs-on: ubuntu-latest
+        steps:
+            - name: "Comment about changes we can't accept"
+              env:
+                GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                PR: ${{ github.event.pull_request.html_url }}
+              run: |
+                 gh pr edit $PR --add-label 'invalid'
