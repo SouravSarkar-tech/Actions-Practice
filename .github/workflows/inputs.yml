@@ -1,0 +1,36 @@
+name: Inputs Test
+on:
+    workflow_dispatch: 
+        inputs:
+            loglevel:
+                description: 'Log Label'
+                required: true
+                default: 'warning'
+                type: choice
+                options:
+                    - info
+                    - warning
+                    - debug
+            print_tags:
+                description: 'True to priny STDOUT'
+                required: true
+                type: boolean
+            tags:
+                description: 'Test Sceario tags'
+                required: true
+                type: string
+            enviroment:
+                description: 'Enviroment to run test against'
+                type: environment
+                required: true
+            
+jobs:
+    print_tags:
+        runs-on: ubuntu-latest
+        if: ${{ inputs.print_tags }}
+        steps:
+        - name: Print the input tag to STDOUT
+          run: The  tags are ${{ inputs.tags }}
+
+
+
