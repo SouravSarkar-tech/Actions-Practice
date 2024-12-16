@@ -1,0 +1,14 @@
+name: Only Run for a specific repo
+on:
+    push: 
+
+jobs:
+    production-deploy:
+        if: github.repository == 'SouravSarkar-tech/Actions-Practice'
+        runs-on: ubuntu-latest
+        steps:
+        - name: SetUp Node
+          uses: actions/setup-node@v4
+          with:
+            node-version: 14
+        - run: npm install -g bats
