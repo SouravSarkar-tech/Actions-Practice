@@ -1,0 +1,12 @@
+name: Pull Request Head
+on:
+    pull_request: 
+        types: 
+            - opened
+
+jobs:
+    runs_if:
+        if: startsWith(github.head_ref, 'releases/')
+        runs-on: ubuntu-latest
+        steps:
+            - run: The head of this PR starts with 'releases/'
