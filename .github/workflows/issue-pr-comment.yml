@@ -1,0 +1,23 @@
+name: Issue PR Triggers
+
+on: [push]
+
+jobs:
+    pr_commented:
+        name: PR comment
+        if: ${{ github.event.issue.pull_request }}
+        runs-on: ubuntu-latest
+        steps:
+            - run: |
+                echo A comment on PR $NUMBER
+              env:
+                NUMBER: ${{ github.event.issue }}
+    issue_commented:
+        name: PR comment
+        if: ${{ !github.event.issue.pull_request }}
+        runs-on: ubuntu-latest
+        steps:
+            - run: |
+                echo A comment on Issue $NUMBER
+              env:
+                NUMBER: ${{ github.event.issue }}
