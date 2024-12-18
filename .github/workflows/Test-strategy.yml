@@ -1,0 +1,19 @@
+name: Test strategy
+on: push
+
+jobs:
+    Test:
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                test-group: [1,2]
+                node: [14,16]
+
+        steps:
+        - name: Test Logs
+          run: echo "Mock Text Logs" > test-job-${{ strategy.job-index }}.txt
+        - name: Upload logs
+          uses: actions/upload-artifact@v4
+          with:
+            name: Upload logs - test-job-${{ strategy.job-index }}.txt
+            path: test-job-${{ strategy.job-index }}.txt
