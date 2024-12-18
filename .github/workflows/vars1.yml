@@ -1,0 +1,15 @@
+name: var test
+on: workflow_dispatch
+env:
+    DAY_OF_THE_WEEK: Wednedday
+
+jobs:
+    greeting_job:
+        runs-on: ubuntu-latest
+        env:
+            Greetings: Hello
+        steps:
+            - name: Name Test
+              run: echo "$Greetings $Firstname - Today is $DAY_OF_THE_WEEK"
+              env:
+                Firstname: Sourav
