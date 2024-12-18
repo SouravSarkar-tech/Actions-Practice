@@ -13,6 +13,9 @@ jobs:
     job2:
         needs: job1
         runs-on: ubuntu-latest
+        concurrency: 
+            group: ${{ github.workflow }}-${{ github.ref }}
+            cancel-in-progress: ${{ !contains(github.ref, 'release/') }}
         strategy:
             matrix: ${{ fromJson(needs.job1.outputs.matrix) }}
         steps:
