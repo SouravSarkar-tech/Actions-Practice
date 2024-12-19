@@ -1,0 +1,26 @@
+name: Node CI
+on: push
+
+jobs:
+    build_and_test:
+        runs-on: ubuntu-latest
+        steps:
+        - name: Checkout Repo
+          uses: actions/checkout@v4
+        - name: npm install, build and test
+          run: |
+            npm install
+            npm run build --if-present
+            npm test
+        - name: Upload Production Artifacts
+          uses: actions/upload-artifacts@v4
+          with:
+            name: Artifact without dist
+            path: |
+                dist
+                !dist/**/*.md
+        - name: Archieve Code Coverage Results
+          uses: actions/upload-artifacts@v4
+          with:
+            name: Code Coverage Results
+            path: output/test/code-coverage.html
