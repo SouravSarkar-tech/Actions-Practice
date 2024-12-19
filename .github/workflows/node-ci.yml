@@ -19,6 +19,7 @@ jobs:
             path: |
                 dist
                 !dist/**/*.md
+            retention-days: 5
         - name: Archieve Code Coverage Results
           uses: actions/upload-artifacts@v4
           with:
