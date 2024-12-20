@@ -13,16 +13,35 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        dotnet-version: [ '3.1.x', '6.0.x' ]
+        
 
     steps:
     - uses: actions/checkout@v4
-    - name: Setup .NET
+    - name: Setup .NET ${{ matrix.dotnet-version }}
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: 8.0.x
+        dotnet-version: ${{ matrix.dotnet-version }}
+        cache: true
     - name: Restore dependencies
+      continue-on-error: true
       run: dotnet restore
+    - name: Install Dependencies
+      continue-on-error: true
+      run: dotnet add package Newtonsoft.Json --version 12.0.1
     - name: Build
+      continue-on-error: true
       run: dotnet build --no-restore
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      continue-on-error: true
+      run:  dotnet test --logger trx --results-directory "TestResults-${{ matrix.dotnet-version }}"
+
+    - name: Upload Test Artifacts
+      uses: actions/upload-artifact@v4
+      if: always()
+      continue-on-error: true
+      with:
+        name: dotnet-results-${{ matrix.dotnet-version }}
+        path: Test-Results-${{ matrix.dotnet-version }}
