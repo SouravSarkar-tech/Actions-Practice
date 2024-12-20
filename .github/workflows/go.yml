@@ -26,4 +26,11 @@ jobs:
     - name: Display Go Version
       run: go version
 
+    - name: Install Dependencies
+      continue-on-error: true
+      run: |
+          go get .
+          go get example.com/octo-examplemodule
+          go get example.com/octo-examplemodule@v1.3.4
+
 
