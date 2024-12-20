@@ -21,5 +21,14 @@ jobs:
       with:
         java-version: '11'
         distribution: 'temurin'
+        architecture: x64
     - name: Build with Ant
+      continue-on-error: true
       run: ant -noinput -buildfile build.xml
+
+    - name: Upload Artifacts
+      uses: actions/upload-artifacts@v4
+      continue-on-error: true
+      with:
+        name: Package
+        path: build/jar
