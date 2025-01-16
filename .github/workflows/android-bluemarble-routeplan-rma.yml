@@ -76,7 +76,7 @@ jobs:
         continue-on-error: true
 
   deploy:
-    if: github.ref_type == 'tag'
+    #if: github.ref_type == 'tag'
     needs: unit_test
     runs-on: ubuntu-latest
     steps:
